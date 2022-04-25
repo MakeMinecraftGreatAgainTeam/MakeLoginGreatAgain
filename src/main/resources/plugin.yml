@@ -1,5 +1,6 @@
 name: MakeLoginGreatAgain
 version: '${project.version}'
+api-version: '1.13'
 main: org.mmga.makelogingreatagain.MakeLoginGreatAgainMain
 authors: [ MakeMinecraftGreatTeam ]
 description: The best login plugin
@@ -7,10 +8,14 @@ commands:
   MakeLoginGreatAgain:
     permission: mlga.*
     permission-message: 你没有权限使用此指令
-mlga.*:
-  description: MakeLoginGreatAgain的所有权限
-  children:
-    mlga.reload: true
-mlga.reload:
-  description: 允许你重载插件配置文件
-  default: op
+  MLGA:
+    permission: mlga.*
+    permission-message: 你没有权限使用此指令
+permissions:
+  mlga.*:
+    description: MakeLoginGreatAgain的所有权限
+    children:
+      mlga.reload: true
+  mlga.reload:
+    description: 允许你重载插件配置文件
+    default: op

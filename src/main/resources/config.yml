@@ -1,0 +1,10 @@
+datasource:
+  #支持sqlite和mysql
+  type: sqlite
+  #以下参数都仅在使用mysql数据库时需填写
+  #数据库库名
+  url: 数据库名
+  #数据库用户名
+  user: 数据库用户
+  #数据库密码
+  password: 数据库密码
