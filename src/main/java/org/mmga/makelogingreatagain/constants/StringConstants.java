@@ -41,7 +41,7 @@ public class StringConstants {
     public static String rightPassword = ChatColor.GREEN + "啊对对对";
     public static String tooLongPassword = ChatColor.RED + "[MakeLoginGreatAgain] 您觉得箱子一行有10^114514个格子是吧";
     public static String inventoryFrameClick = ChatColor.RED + "您就不能点个正常的地方吗？";
-    public static String tryExitInventory = ChatColor.RED + "请不要尝试关闭登陆窗口！";
+    public static String tryExitInventory = ChatColor.RED + "您又来卡bug了？";
     public static String exitServer = ChatColor.GREEN + "[MakeLoginGreatAgain] 成功退出服务器";
     public static String twoPasswordNotEquals = ChatColor.RED + "两次输入的密码不一致，请重试！";
     public static String successfulRegister = ChatColor.GREEN + "成功注册！";
