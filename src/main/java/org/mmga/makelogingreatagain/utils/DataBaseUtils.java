@@ -25,9 +25,7 @@ public class DataBaseUtils {
      * @param ip 玩家ip
      */
     public static void updateUserData(String name,String uuid,String ip){
-        runSqlUpdate("update mlga_user set `name` = ? where `uuid` = ?",name,uuid);
-        runSqlUpdate("update mlga_user set `lastLoginedIP` = ? where `uuid` = ?",ip,uuid);
-        runSqlUpdate("update mlga_user set `lastLoginedTime` = ? where `uuid` = ?",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()),uuid);
+        runSqlUpdate("update mlga_user set `name` = ?, `lastLoginedIP` = ?,`lastLoginedTime` = ? where `uuid` = ?",name,ip,new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()),uuid);
     }
     /**
      * 判断一个玩家输入的密码是否正常
