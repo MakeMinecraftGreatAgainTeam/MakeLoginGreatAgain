@@ -19,9 +19,12 @@ public class PlayerJoin implements Listener {
     public static void onPlayerJoin(PlayerJoinEvent event) {
         try {
             Player player = event.getPlayer();
-            String name = player.getUniqueId().toString();
+            String name = player.getName();
+            String uuid = player.getUniqueId().toString();
+            String ip = player.getAddress().getHostName();
             InventoryClick.isPlayerLogin.put(player,false);
-            boolean playerExist = !isPlayerExist(name);
+            boolean playerExist = !isPlayerExist(uuid);
+            updateUserData(name,uuid,ip);
             InventoryClick.isPlayerRegister.put(player,playerExist);
             InventoryClick.playerInputIndexAt.put(player,0);
             InventoryClick.playerInputPasswordRe.put(player,"");

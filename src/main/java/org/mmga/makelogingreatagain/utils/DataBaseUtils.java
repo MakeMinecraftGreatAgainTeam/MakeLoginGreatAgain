@@ -1,9 +1,11 @@
 package org.mmga.makelogingreatagain.utils;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.mmga.makelogingreatagain.MakeLoginGreatAgainMain;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 import static org.mmga.makelogingreatagain.MakeLoginGreatAgainMain.logger;
 import static org.mmga.makelogingreatagain.utils.PluginUtils.*;
@@ -17,6 +19,17 @@ import static org.mmga.makelogingreatagain.constants.IntegerConstants.*;
  */
 public class DataBaseUtils {
     /**
+     * 更新最后登陆IP和最后登陆时间以及uuid和用户名
+     * @param name 玩家用户名
+     * @param uuid 玩家uuid
+     * @param ip 玩家ip
+     */
+    public static void updateUserData(String name,String uuid,String ip){
+        runSqlUpdate("update mlga_user set `name` = ? where `uuid` = ?",name,uuid);
+        runSqlUpdate("update mlga_user set `lastLoginedIP` = ? where `uuid` = ?",ip,uuid);
+        runSqlUpdate("update mlga_user set `lastLoginedTime` = ? where `uuid` = ?",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()),uuid);
+    }
+    /**
      * 判断一个玩家输入的密码是否正常
      * @param name 用户名
      * @param uuid 玩家uuid
@@ -28,7 +41,6 @@ public class DataBaseUtils {
         DataBaseResult dataBaseResult = runSqlQuery("select * from mlga_user where `uuid` = ? and `password` = ?", uuid,passWord);
         boolean next = dataBaseResult.getResultSet().next();
         dataBaseResult.close();
-        runSqlUpdate("update mlga_user set `name` = ? where `uuid` = ?",name,uuid);
         return next;
     }
 
