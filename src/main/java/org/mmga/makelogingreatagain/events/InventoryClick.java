@@ -55,6 +55,7 @@ public class InventoryClick implements Listener {
                         playerInputIndexAt.put(player,0);
                         isPlayerRegister.put(player,true);
                         isPlayerUpper.put(player,false);
+                        updateUserData(name,uuid,player.getAddress().getHostName());
                         player.sendMessage(rightPassword);
                         player.closeInventory();
                     }else{
