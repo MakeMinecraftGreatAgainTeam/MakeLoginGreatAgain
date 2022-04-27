@@ -1,18 +1,11 @@
 package org.mmga.makelogingreatagain.events;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.mmga.makelogingreatagain.MakeLoginGreatAgainMain;
-import org.mmga.makelogingreatagain.utils.PluginUtils;
 
-import java.net.InetSocketAddress;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Logger;
 
 import static org.mmga.makelogingreatagain.utils.DataBaseUtils.*;
 
@@ -25,15 +18,14 @@ public class PlayerJoin implements Listener {
     @EventHandler
     public static void onPlayerJoin(PlayerJoinEvent event) {
         try {
-            MakeLoginGreatAgainMain plugin = PluginUtils.getPlugin();
-            Logger logger = plugin.getLogger();
             Player player = event.getPlayer();
-            String name = player.getName();
-            if (!isPlayerExist(name)) {
-                logger.info("not");
-            }else{
-                logger.info("yes");
-            }
+            String name = player.getUniqueId().toString();
+            InventoryClick.isPlayerLogin.put(player,false);
+            boolean playerExist = !isPlayerExist(name);
+            InventoryClick.isPlayerRegister.put(player,playerExist);
+            InventoryClick.playerInputIndexAt.put(player,0);
+            InventoryClick.playerInputPasswordRe.put(player,"");
+            InventoryClick.playerInputPassword.put(player,"");
         }catch (SQLException e){
             errorOnSqlException(e);
         }

@@ -1,12 +1,12 @@
 package org.mmga.makelogingreatagain;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Server;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mmga.makelogingreatagain.commands.MakeLoginGreatAgain;
 import org.mmga.makelogingreatagain.events.InventoryClick;
 import org.mmga.makelogingreatagain.events.PlayerJoin;
+import org.mmga.makelogingreatagain.events.TickEvent;
 
 import java.util.logging.Logger;
 
@@ -40,6 +40,8 @@ public final class MakeLoginGreatAgainMain extends JavaPlugin {
         pluginManager.registerEvents(new PlayerJoin(),this);
         pluginManager.registerEvents(new InventoryClick(),this);
         logger.info(ChatColor.GREEN + "MLGA插件已加载");
+        TickEvent tickEvent = new TickEvent();
+        tickEvent.runTaskTimer(this,0L,10L);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package org.mmga.makelogingreatagain.utils;
 
-import org.bukkit.Server;
 import org.mmga.makelogingreatagain.MakeLoginGreatAgainMain;
 
 /**

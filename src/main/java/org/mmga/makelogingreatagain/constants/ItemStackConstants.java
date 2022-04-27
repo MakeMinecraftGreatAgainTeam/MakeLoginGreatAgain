@@ -1,13 +1,12 @@
 package org.mmga.makelogingreatagain.constants;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import static org.bukkit.Material.*;
 import static org.mmga.makelogingreatagain.constants.ChatColorConstants.*;
+import static org.mmga.makelogingreatagain.constants.StringConstants.*;
 
 /**
  * @author wzp
@@ -15,11 +14,11 @@ import static org.mmga.makelogingreatagain.constants.ChatColorConstants.*;
  * @date 2022/4/24
  */
 public class ItemStackConstants {
-    public static ItemStack frame = getStackWithName(YELLOW_STAINED_GLASS_PANE,64, ChatColor.YELLOW + "边框");
-    public static ItemStack capsLock = getStackWithName(LIGHT_BLUE_STAINED_GLASS_PANE,1,ChatColor.BLUE + "大小写切换");
-    public static ItemStack exit = getStackWithName(RED_STAINED_GLASS_PANE,1,ChatColor.RED + "退出服务器");
-    public static ItemStack done = getStackWithName(GREEN_STAINED_GLASS_PANE,1,ChatColor.GREEN + "确认");
-    public static ItemStack clear = getStackWithName(GRAY_STAINED_GLASS_PANE,1,ChatColor.GRAY + "清空输入框");
+    public static ItemStack frame = getStackWithName(YELLOW_STAINED_GLASS_PANE,64, FrameName);
+    public static ItemStack capsLock = getStackWithName(LIGHT_BLUE_STAINED_GLASS_PANE,1,CapsLockName);
+    public static ItemStack exit = getStackWithName(RED_STAINED_GLASS_PANE,1,quitServerName);
+    public static ItemStack done = getStackWithName(GREEN_STAINED_GLASS_PANE,1,doneName);
+    public static ItemStack clear = getStackWithName(GRAY_STAINED_GLASS_PANE,1,clearInputName);
     public static ItemStack one = getStackWithName(MAGENTA_STAINED_GLASS_PANE,1,numberColor + "1");
     public static ItemStack two = getStackWithName(MAGENTA_STAINED_GLASS_PANE,1,numberColor + "2");
     public static ItemStack three = getStackWithName(MAGENTA_STAINED_GLASS_PANE,1,numberColor + "3");
@@ -85,7 +84,6 @@ public class ItemStackConstants {
     public static ItemStack air = new ItemStack(AIR);
     public static ItemStack getStackWithName(Material material, int amount, String name){
         ItemStack stack = new ItemStack(material,amount);
-        BlockData blockData = BLUE_STAINED_GLASS_PANE.createBlockData();
         ItemMeta itemMeta = stack.getItemMeta();
         itemMeta.setDisplayName(name);
         stack.setItemMeta(itemMeta);

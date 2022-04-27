@@ -36,4 +36,21 @@ public class StringConstants {
     public static String inventoryLoginTitle = ChatColor.DARK_GREEN + "请登陆！";
     public static String inventoryRegisterTitle = ChatColor.DARK_RED + "请注册！";
     public static String inventoryReRegisterTitle = ChatColor.DARK_RED + "请重新输入密码！";
+    public static String wrongPassword = ChatColor.RED + "[MakeLoginGreatAgain] 密码错误！";
+    public static String rightPassword = ChatColor.GREEN + "密码正确！登陆成功！";
+    public static String tooLongPassword = ChatColor.RED + "[MakeLoginGreatAgain] 密码过长！";
+    public static String inventoryFrameClick = ChatColor.RED + "请您不要点边框，谢谢！";
+    public static String tryExitInventory = ChatColor.RED + "请不要尝试关闭登陆窗口！";
+    public static String exitServer = ChatColor.GREEN + "[MakeLoginGreatAgain] 成功退出服务器";
+    public static String twoPasswordNotEquals = ChatColor.RED + "两次输入的密码不一致，请重试！";
+    public static String successfulRegister = ChatColor.GREEN + "成功注册！";
+    public static String datasourceWrong = ChatColor.RED + "你的数据库配置有误，报错已发向后台！";
+    public static String reloadDone = ChatColor.GREEN + "插件重载成功！";
+    public static String permissionsMissing = ChatColor.RED + "你没有权限使用此指令";
+    public static String wrongArguments = ChatColor.RED + "错误的参数！";
+    public static String FrameName = ChatColor.YELLOW + "边框";
+    public static String CapsLockName = ChatColor.BLUE + "大小写切换";
+    public static String quitServerName = ChatColor.RED + "退出服务器";
+    public static String doneName = ChatColor.GREEN + "确认";
+    public static String clearInputName = ChatColor.GRAY + "清空输入框";
 }

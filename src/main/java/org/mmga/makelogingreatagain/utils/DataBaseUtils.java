@@ -4,7 +4,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.mmga.makelogingreatagain.MakeLoginGreatAgainMain;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 import static org.mmga.makelogingreatagain.MakeLoginGreatAgainMain.logger;
 import static org.mmga.makelogingreatagain.utils.PluginUtils.*;
@@ -20,26 +19,42 @@ public class DataBaseUtils {
     /**
      * 判断一个玩家输入的密码是否正常
      * @param name 用户名
+     * @param uuid 玩家uuid
      * @param password 密码
      * @return 是否能成本登陆
      */
-    public static boolean isUsernamePasswordRight(String name, String password) throws SQLException {
-        DataBaseResult dataBaseResult = runSqlQuery("select * from mlga_user where `name` = ? `password` = ?", name,password);
+    public static boolean isUsernamePasswordRight(String name,String uuid, String password) throws SQLException {
+        String passWord = Sha256.get256(password);
+        DataBaseResult dataBaseResult = runSqlQuery("select * from mlga_user where `uuid` = ? and `password` = ?", uuid,passWord);
         boolean next = dataBaseResult.getResultSet().next();
         dataBaseResult.close();
+        runSqlUpdate("update mlga_user set `name` = ? where `uuid` = ?",name,uuid);
         return next;
+    }
+
+    /**
+     * 将玩家添加至数据库
+     * @param name 用户名
+     * @param uuid 玩家uuid
+     * @param password 玩家密码
+     * @param lastLoginedIp 玩家最后登陆的IP
+     * @param lastLoginedTime 玩家最后登陆的时间
+     */
+    public static void addPlayer(String name, String uuid, String password, String lastLoginedIp, String lastLoginedTime){
+        String passWord = Sha256.get256(password);
+        runSqlUpdate("insert into mlga_user (`name`,`uuid`,`password`,`lastLoginedIP`,`lastLoginedTime`) values (?,?,?,?,?)",name,uuid,passWord,lastLoginedIp,lastLoginedTime);
     }
     /**
      * 检测玩家是否存在于数据库中
-     * @param name 玩家名称
+     * @param uuid 玩家uuid
      * @return 玩家是否存在于数据库中
      * @throws SQLException 当SQL关闭连接或获取连接错误时抛出
      */
-    public static boolean isPlayerExist(String name) throws SQLException {
-        DataBaseResult dataBaseResult = runSqlQuery("select * from mlga_user where `name` = ?", name);
+    public static boolean isPlayerExist(String uuid) throws SQLException {
+        DataBaseResult dataBaseResult = runSqlQuery("select * from mlga_user where `uuid` = ?", uuid);
         boolean next = dataBaseResult.getResultSet().next();
         dataBaseResult.close();
-        return next;
+        return !next;
     }
     /**
      * 若表不存在则创建表
@@ -122,7 +137,7 @@ public class DataBaseUtils {
             try {
                 Class.forName("org.sqlite.JDBC");
                 try{
-                    c = DriverManager.getConnection("jdbc:sqlite:datasource.db");
+                    c = DriverManager.getConnection("jdbc:sqlite:plugins/MakeLoginGreatAgain/datasource.db");
                 }catch (SQLException e){
                     logger.info("访问Sqlite数据库失败");
                     errorOnSqlException(e);
