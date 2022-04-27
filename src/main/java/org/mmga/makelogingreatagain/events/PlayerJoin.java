@@ -24,7 +24,9 @@ public class PlayerJoin implements Listener {
             String ip = player.getAddress().getHostName();
             InventoryClick.isPlayerLogin.put(player,false);
             boolean playerExist = !isPlayerExist(uuid);
-            updateUserData(name,uuid,ip);
+            if(playerExist){
+                updateUserData(name,uuid,ip);
+            }
             InventoryClick.isPlayerRegister.put(player,playerExist);
             InventoryClick.playerInputIndexAt.put(player,0);
             InventoryClick.playerInputPasswordRe.put(player,"");
