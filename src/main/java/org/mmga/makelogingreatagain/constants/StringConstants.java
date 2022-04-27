@@ -34,13 +34,13 @@ public class StringConstants {
             "  \"lastLoginedIP\" TEXT NOT NULL,\n" +
             "  \"lastLoginedTime\" DATE NOT NULL\n" +
             ");";
-    public static String inventoryLoginTitle = ChatColor.DARK_GREEN + "请登陆！";
-    public static String inventoryRegisterTitle = ChatColor.DARK_RED + "请注册！";
-    public static String inventoryReRegisterTitle = ChatColor.DARK_RED + "请重新输入密码！";
-    public static String wrongPassword = ChatColor.RED + "[MakeLoginGreatAgain] 密码错误！";
-    public static String rightPassword = ChatColor.GREEN + "密码正确！登陆成功！";
-    public static String tooLongPassword = ChatColor.RED + "[MakeLoginGreatAgain] 密码过长！";
-    public static String inventoryFrameClick = ChatColor.RED + "请您不要点边框，谢谢！";
+    public static String inventoryLoginTitle = ChatColor.DARK_GREEN + "登录";
+    public static String inventoryRegisterTitle = ChatColor.DARK_RED + "注册";
+    public static String inventoryReRegisterTitle = ChatColor.DARK_RED + "您输入的东西真的对马？";
+    public static String wrongPassword = ChatColor.RED + "[MakeLoginGreatAgain] 您完全记不住密码是吗？";
+    public static String rightPassword = ChatColor.GREEN + "啊对对对";
+    public static String tooLongPassword = ChatColor.RED + "[MakeLoginGreatAgain] 您觉得箱子一行有10^114514个格子是吧";
+    public static String inventoryFrameClick = ChatColor.RED + "您就不能点个正常的地方吗？";
     public static String tryExitInventory = ChatColor.RED + "请不要尝试关闭登陆窗口！";
     public static String exitServer = ChatColor.GREEN + "[MakeLoginGreatAgain] 成功退出服务器";
     public static String twoPasswordNotEquals = ChatColor.RED + "两次输入的密码不一致，请重试！";
