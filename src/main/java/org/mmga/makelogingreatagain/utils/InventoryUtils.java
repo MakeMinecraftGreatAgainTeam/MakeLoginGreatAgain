@@ -69,7 +69,7 @@ public class InventoryUtils {
                 //大写锁定
                 Boolean isUpper = isPlayerUpper.getOrDefault(player, false);
                 //获取新的物品栏
-                Inventory inventory = createInventory(plugin, inventoryLoginTitle);
+                Inventory inventory = createInventory(plugin, openInventory.getTitle());
                 if (isUpper) {
                     //小写
                     addItemLoginRegisterLower(inventory);
