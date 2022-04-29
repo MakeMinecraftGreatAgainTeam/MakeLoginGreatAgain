@@ -25,7 +25,11 @@ public class DataBaseUtils {
      * @param ip 玩家ip
      */
     public static void updateUserData(String name,String uuid,String ip){
-        runSqlUpdate("update mlga_user set `name` = ?, `lastLoginedIP` = ?,`lastLoginedTime` = ? where `uuid` = ?",name,ip,new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()),uuid);
+        Thread thread = new Thread(() -> {
+            runSqlUpdate("update mlga_user set `name` = ?, `lastLoginedIP` = ?,`lastLoginedTime` = ? where `uuid` = ?", name, ip, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()), uuid);
+        });
+        thread.start();
+
     }
     /**
      * 判断一个玩家输入的密码是否正常

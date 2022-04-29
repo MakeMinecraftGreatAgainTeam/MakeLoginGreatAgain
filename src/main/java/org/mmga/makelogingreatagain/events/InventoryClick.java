@@ -67,6 +67,7 @@ public class InventoryClick implements Listener {
                 boolean isInput = tryHandleInput(openInventory, player, event.getCurrentItem(), plugin);
                 if (!isInput) {
                     playerInputIndexAt.put(player,0);
+                    isPlayerUpper.put(player,false);
                     player.openInventory(getReRegisterInventory(plugin));
                 }
                 event.setCancelled(true);
