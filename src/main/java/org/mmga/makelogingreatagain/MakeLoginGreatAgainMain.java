@@ -1,12 +1,14 @@
 package org.mmga.makelogingreatagain;
 
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mmga.makelogingreatagain.commands.MakeLoginGreatAgain;
 import org.mmga.makelogingreatagain.events.InventoryClick;
 import org.mmga.makelogingreatagain.events.PlayerJoin;
 import org.mmga.makelogingreatagain.events.TickEvent;
+import org.mmga.makelogingreatagain.utils.PluginUtils;
 
 import java.util.logging.Logger;
 
@@ -39,9 +41,13 @@ public final class MakeLoginGreatAgainMain extends JavaPlugin {
         PluginManager pluginManager = this.getServer().getPluginManager();
         pluginManager.registerEvents(new PlayerJoin(),this);
         pluginManager.registerEvents(new InventoryClick(),this);
-        logger.info(ChatColor.GREEN + "MLGA插件已加载");
         TickEvent tickEvent = new TickEvent();
         tickEvent.runTaskTimer(this,0L,10L);
+        boolean b = PluginUtils.reloadLanguageConfig();
+        if(!b){
+            logger.info(ChatColor.RED + "Didn't find full language configure,using the default config");
+        }
+        logger.info(ChatColor.GREEN + "MLGA插件已加载");
     }
 
     @Override

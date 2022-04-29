@@ -34,24 +34,24 @@ public class StringConstants {
             "  \"lastLoginedIP\" TEXT NOT NULL,\n" +
             "  \"lastLoginedTime\" DATE NOT NULL\n" +
             ");";
-    public static String inventoryLoginTitle = ChatColor.DARK_GREEN + "登录";
-    public static String inventoryRegisterTitle = ChatColor.DARK_RED + "注册";
-    public static String inventoryReRegisterTitle = ChatColor.DARK_RED + "您输入的东西真的对马？";
-    public static String wrongPassword = ChatColor.RED + "[MakeLoginGreatAgain] 您完全记不住密码是吗？";
-    public static String rightPassword = ChatColor.GREEN + "啊对对对";
-    public static String tooLongPassword = ChatColor.RED + "[MakeLoginGreatAgain] 您觉得箱子一行有10^114514个格子是吧";
-    public static String inventoryFrameClick = ChatColor.RED + "您就不能点个正常的地方吗？";
-    public static String tryExitInventory = ChatColor.RED + "您又来卡bug了？";
-    public static String exitServer = ChatColor.GREEN + "[MakeLoginGreatAgain] 成功退出服务器";
-    public static String twoPasswordNotEquals = ChatColor.RED + "两次输入的密码不一致，请重试！";
-    public static String successfulRegister = ChatColor.GREEN + "成功注册！";
-    public static String datasourceWrong = ChatColor.RED + "你的数据库配置有误，报错已发向后台！";
-    public static String reloadDone = ChatColor.GREEN + "插件重载成功！";
-    public static String permissionsMissing = ChatColor.RED + "你没有权限使用此指令";
-    public static String wrongArguments = ChatColor.RED + "错误的参数！";
-    public static String FrameName = ChatColor.YELLOW + "边框";
-    public static String CapsLockName = ChatColor.BLUE + "大小写切换";
-    public static String quitServerName = ChatColor.RED + "退出服务器";
-    public static String doneName = ChatColor.GREEN + "确认";
-    public static String clearInputName = ChatColor.GRAY + "清空输入框";
+    public static String inventoryLoginTitle = "请登陆";
+    public static String inventoryRegisterTitle = "请注册";
+    public static String inventoryReRegisterTitle = "请重新输入密码";
+    public static String wrongPassword = "密码错误！";
+    public static String rightPassword = "登陆成功！";
+    public static String tooLongPassword = "密码过长！";
+    public static String inventoryFrameClick = "请不要点击边框！";
+    public static String tryExitInventory = "请不要尝试退出登陆/注册页面";
+    public static String exitServer = "感谢游玩！";
+    public static String twoPasswordNotEquals = "两次输入的密码不一致，请重试！";
+    public static String successfulRegister = "注册成功！";
+    public static String datasourceWrong = "您的数据库配置有误，报错已发向后台！";
+    public static String reloadDone = "插件重载成功！";
+    public static String permissionsMissing = "你没有权限使用此指令！";
+    public static String wrongArguments = "错误的参数！";
+    public static String FrameName = "边框";
+    public static String CapsLockName = "大小写锁定";
+    public static String quitServerName = "退出服务器";
+    public static String doneName = "确认";
+    public static String clearInputName = "清空输入框";
 }
