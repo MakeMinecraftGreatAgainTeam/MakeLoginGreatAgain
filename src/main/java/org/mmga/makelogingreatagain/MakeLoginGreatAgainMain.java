@@ -42,7 +42,7 @@ public final class MakeLoginGreatAgainMain extends JavaPlugin {
         pluginManager.registerEvents(new PlayerJoin(),this);
         pluginManager.registerEvents(new InventoryClick(),this);
         TickEvent tickEvent = new TickEvent();
-        tickEvent.runTaskTimer(this,0L,10L);
+        tickEvent.runTaskTimer(this,0L,1L);
         boolean b = PluginUtils.reloadLanguageConfig();
         if(!b){
             logger.info(ChatColor.RED + "Didn't find full language configure,using the default config");

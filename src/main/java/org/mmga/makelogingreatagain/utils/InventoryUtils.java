@@ -62,10 +62,11 @@ public class InventoryUtils {
 
     private static boolean handleInput(InventoryView openInventory, Player player, ItemStack currentItem, JavaPlugin plugin, ConcurrentHashMap<Player, String> playerInputPasswordRe) {
         if(currentItem != null){
-            if (frame.equals(currentItem)) {
+            String name = currentItem.getItemMeta().getDisplayName();
+            if (FrameName.equals(name)) {
                 //边框提示
                 player.sendMessage(inventoryFrameClick);
-            } else if (capsLock.equals(currentItem)) {
+            } else if (CapsLockName.equals(name)) {
                 //大写锁定
                 Boolean isUpper = isPlayerUpper.getOrDefault(player, false);
                 //获取新的物品栏
@@ -88,19 +89,19 @@ public class InventoryUtils {
                 }
                 //使玩家重新打开物品栏
                 player.openInventory(inventory);
-            } else if (exit.equals(currentItem)) {
+            } else if (quitServerName.equals(name)) {
                 playerInputPasswordRe.put(player,"");
                 playerInputIndexAt.put(player,0);
                 //退出服务器
                 player.kickPlayer(exitServer);
-            } else if (clear.equals(currentItem)) {
+            } else if (clearInputName.equals(name)) {
                 //清空密码
                 for (int x = 0; x < maxPassword; x++) {
                     openInventory.setItem(x + 45, air);
                 }
                 playerInputIndexAt.put(player, 0);
                 playerInputPasswordRe.put(player, "");
-            } else if (done.equals(currentItem)) {
+            } else if (doneName.equals(name)) {
                 return false;
             } else {
                 Integer index = playerInputIndexAt.getOrDefault(player, 0);
@@ -108,10 +109,9 @@ public class InventoryUtils {
                     openInventory.setItem(index + 45, currentItem);
                     index += 1;
                     playerInputIndexAt.put(player, index);
-                    String displayName = currentItem.getItemMeta().getDisplayName();
-                    displayName = displayName.replace(letterColor.toString(), "").replace(numberColor.toString(), "");
+                    name = name.replace(letterColor.toString(), "").replace(numberColor.toString(), "");
                     String nowPassword = playerInputPasswordRe.getOrDefault(player, "");
-                    nowPassword += displayName;
+                    nowPassword += name;
                     playerInputPasswordRe.put(player, nowPassword);
                 } else {
                     player.sendMessage(tooLongPassword);

@@ -5,7 +5,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.InventoryView;
+import org.bukkit.inventory.ItemStack;
 import org.mmga.makelogingreatagain.MakeLoginGreatAgainMain;
+import org.mmga.makelogingreatagain.constants.ItemStackConstants;
 import org.mmga.makelogingreatagain.utils.PluginUtils;
 
 import java.net.InetSocketAddress;
@@ -42,9 +44,10 @@ public class InventoryClick implements Listener {
             Player player = (Player) event.getWhoClicked();
             String name = player.getName();
             String uuid = player.getUniqueId().toString();
+            ItemStack itemStack = event.getCurrentItem();
             //登陆GUI
             if (inventoryLoginTitle.equals(title)) {
-                boolean isInput = tryHandleInput(openInventory, player, event.getCurrentItem(), plugin);
+                boolean isInput = tryHandleInput(openInventory, player, itemStack, plugin);
                 if (!isInput) {
                     String password = playerInputPassword.get(player);
                     boolean usernamePasswordRight = isUsernamePasswordRight(name,uuid,password);
@@ -64,7 +67,7 @@ public class InventoryClick implements Listener {
                 }
                 event.setCancelled(true);
             } else if (inventoryRegisterTitle.equals(title)) {
-                boolean isInput = tryHandleInput(openInventory, player, event.getCurrentItem(), plugin);
+                boolean isInput = tryHandleInput(openInventory, player, itemStack, plugin);
                 if (!isInput) {
                     playerInputIndexAt.put(player,0);
                     isPlayerUpper.put(player,false);
@@ -72,7 +75,7 @@ public class InventoryClick implements Listener {
                 }
                 event.setCancelled(true);
             } else if (inventoryReRegisterTitle.equals(title)) {
-                boolean isInput = tryHandleInputReRegister(openInventory, player, event.getCurrentItem(), plugin);
+                boolean isInput = tryHandleInputReRegister(openInventory, player,itemStack, plugin);
                 if (!isInput) {
                     String first = playerInputPassword.get(player);
                     String second = playerInputPasswordRe.get(player);
