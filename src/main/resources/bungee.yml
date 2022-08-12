@@ -1,0 +1,4 @@
+name: MakeLoginGreatAgain
+main: org.mmga.makelogingreatagain.bungee.BungeeMain
+version: '${project.version}'
+author: MakeMinecraftGreatTeam

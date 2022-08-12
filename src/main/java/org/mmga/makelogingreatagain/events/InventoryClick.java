@@ -13,6 +13,7 @@ import org.mmga.makelogingreatagain.utils.PluginUtils;
 import java.net.InetSocketAddress;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.mmga.makelogingreatagain.constants.StringConstants.*;
@@ -43,7 +44,8 @@ public class InventoryClick implements Listener {
             //获取点击此物品栏的玩家
             Player player = (Player) event.getWhoClicked();
             String name = player.getName();
-            String uuid = player.getUniqueId().toString();
+            UUID uniqueId = player.getUniqueId();
+            String uuid = uniqueId.toString();
             ItemStack itemStack = event.getCurrentItem();
             //登陆GUI
             if (inventoryLoginTitle.equals(title)) {
@@ -60,6 +62,9 @@ public class InventoryClick implements Listener {
                         isPlayerUpper.put(player,false);
                         updateUserData(name,uuid,player.getAddress().getHostName());
                         player.sendMessage(rightPassword);
+                        if (BungeeCordMessageListener.NEED_LOGIN.containsKey(uniqueId)){
+                            BungeeCordMessageListener.NEED_LOGIN.put(uniqueId,false);
+                        }
                         player.closeInventory();
                     }else{
                         player.kickPlayer(wrongPassword);
@@ -90,6 +95,9 @@ public class InventoryClick implements Listener {
                         isPlayerLogin.put(player,true);
                         isPlayerUpper.put(player,false);
                         player.closeInventory();
+                        if (BungeeCordMessageListener.NEED_LOGIN.containsKey(uniqueId)){
+                            BungeeCordMessageListener.NEED_LOGIN.put(uniqueId,false);
+                        }
                         player.sendMessage(successfulRegister);
                     }else{
                         playerInputPassword.put(player,"");

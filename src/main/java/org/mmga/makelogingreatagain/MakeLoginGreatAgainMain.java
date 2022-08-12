@@ -1,10 +1,12 @@
 package org.mmga.makelogingreatagain;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Server;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mmga.makelogingreatagain.commands.MakeLoginGreatAgain;
+import org.mmga.makelogingreatagain.events.BungeeCordMessageListener;
 import org.mmga.makelogingreatagain.events.InventoryClick;
 import org.mmga.makelogingreatagain.events.PlayerJoin;
 import org.mmga.makelogingreatagain.events.TickEvent;
@@ -20,7 +22,7 @@ import static org.mmga.makelogingreatagain.constants.StringConstants.*;
  * @date 2022/4/18
  * @version 1.0.0
  */
-public final class MakeLoginGreatAgainMain extends JavaPlugin {
+public final class MakeLoginGreatAgainMain extends JavaPlugin{
 
     public static Logger logger;
 
@@ -38,7 +40,8 @@ public final class MakeLoginGreatAgainMain extends JavaPlugin {
         this.getCommand(commandMakeLoginGreatAgain).setExecutor(new MakeLoginGreatAgain());
         this.getCommand(commandMLGA).setExecutor(new MakeLoginGreatAgain());
         //注册事件
-        PluginManager pluginManager = this.getServer().getPluginManager();
+        Server server = this.getServer();
+        PluginManager pluginManager = server.getPluginManager();
         pluginManager.registerEvents(new PlayerJoin(),this);
         pluginManager.registerEvents(new InventoryClick(),this);
         TickEvent tickEvent = new TickEvent();
@@ -46,7 +49,7 @@ public final class MakeLoginGreatAgainMain extends JavaPlugin {
         boolean b = PluginUtils.reloadLanguageConfig();
         if(!b){
             logger.info(ChatColor.RED + "Didn't find full language configure,using the default config");
-        }
+        }server.getMessenger().registerIncomingPluginChannel(this,"mlga:login",new BungeeCordMessageListener());
         logger.info(ChatColor.GREEN + "MLGA插件已加载");
     }
 
@@ -57,3 +60,4 @@ public final class MakeLoginGreatAgainMain extends JavaPlugin {
         logger.info(ChatColor.RED + "MLGA插件已卸载");
     }
 }
+

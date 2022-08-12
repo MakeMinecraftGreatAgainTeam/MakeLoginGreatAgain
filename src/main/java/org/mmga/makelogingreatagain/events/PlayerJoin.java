@@ -4,35 +4,48 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 
 import java.sql.SQLException;
+import java.util.UUID;
 
 import static org.mmga.makelogingreatagain.utils.DataBaseUtils.*;
 
 /**
  * @author wzp
  * @version 1.0.0
- * @date 2022/4/18
  */
 public class PlayerJoin implements Listener {
     @EventHandler
     public static void onPlayerJoin(PlayerJoinEvent event) {
-        try {
-            Player player = event.getPlayer();
-            String name = player.getName();
-            String uuid = player.getUniqueId().toString();
-            String ip = player.getAddress().getHostName();
-            InventoryClick.isPlayerLogin.put(player,false);
-            boolean playerExist = !isPlayerExist(uuid);
-            if(playerExist){
-                updateUserData(name,uuid,ip);
+        Player player = event.getPlayer();
+        UUID uniqueId = player.getUniqueId();
+        System.out.println(BungeeCordMessageListener.NEED_LOGIN);
+        Boolean orDefault = BungeeCordMessageListener.NEED_LOGIN.getOrDefault(uniqueId, true);
+        if (orDefault){
+            try {
+                String name = player.getName();
+                String uuid = uniqueId.toString();
+                String ip = player.getAddress().getHostName();
+                InventoryClick.isPlayerLogin.put(player,false);
+                boolean playerExist = !isPlayerExist(uuid);
+                if(playerExist){
+                    updateUserData(name,uuid,ip);
+                }
+                InventoryClick.isPlayerRegister.put(player,playerExist);
+                InventoryClick.playerInputIndexAt.put(player,0);
+                InventoryClick.playerInputPasswordRe.put(player,"");
+                InventoryClick.playerInputPassword.put(player,"");
+            }catch (SQLException e){
+                errorOnSqlException(e);
             }
-            InventoryClick.isPlayerRegister.put(player,playerExist);
-            InventoryClick.playerInputIndexAt.put(player,0);
-            InventoryClick.playerInputPasswordRe.put(player,"");
+        }else{
             InventoryClick.playerInputPassword.put(player,"");
-        }catch (SQLException e){
-            errorOnSqlException(e);
+            InventoryClick.playerInputPasswordRe.put(player,"");
+            InventoryClick.playerInputIndexAt.put(player,0);
+            InventoryClick.isPlayerRegister.put(player,true);
+            InventoryClick.isPlayerLogin.put(player,true);
+            InventoryClick.isPlayerUpper.put(player,false);
         }
     }
 }
