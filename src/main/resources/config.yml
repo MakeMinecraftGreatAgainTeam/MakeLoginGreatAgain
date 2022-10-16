@@ -10,7 +10,7 @@ datasource:
   password: 数据库密码
 language:
   inventory:
-    LoginTitle: "请登陆"
+    LoginTitle: "请登录"
     RegisterTitle: "请注册"
     ReRegisterTitle: "请重新输入密码"
   message:
@@ -18,7 +18,7 @@ language:
     rightPassword: "登陆成功！"
     tooLongPassword: "密码过长！"
     clickFrame: "请不要点击边框！"
-    exitInventory: "请不要尝试退出登陆/注册页面"
+    exitInventory: "请不要尝试退出登录/注册页面"
     exitServer: "感谢游玩！"
     twoPasswordNotEquals: "两次输入的密码不一致，请重试！"
     successfulRegister: "注册成功！"
