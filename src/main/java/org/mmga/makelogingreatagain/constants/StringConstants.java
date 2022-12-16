@@ -1,8 +1,5 @@
 package org.mmga.makelogingreatagain.constants;
 
-import org.bukkit.ChatColor;
-import org.bukkit.plugin.java.JavaPlugin;
-
 /**
  * @author wzp
  * @version 1.0.0

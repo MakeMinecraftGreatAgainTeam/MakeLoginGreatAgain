@@ -2,7 +2,6 @@ package org.mmga.makelogingreatagain;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mmga.makelogingreatagain.commands.MakeLoginGreatAgain;
