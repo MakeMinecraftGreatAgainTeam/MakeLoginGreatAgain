@@ -22,7 +22,7 @@ import static org.mmga.makelogingreatagain.utils.InventoryUtils.*;
 /**
  * @author wzp
  * @version 1.0.0
- * @data 2022/4/24
+ * @date 2022/4/24
  */
 public class InventoryClick implements Listener {
     public static ConcurrentHashMap<Player,Integer> playerInputIndexAt = new ConcurrentHashMap<>();
