@@ -10,4 +10,5 @@ import org.bukkit.ChatColor;
 public class ChatColorConstants {
     public static ChatColor numberColor = ChatColor.GOLD;
     public static ChatColor letterColor = ChatColor.RED;
+    public static ChatColor tipsColor = ChatColor.GREEN;
 }

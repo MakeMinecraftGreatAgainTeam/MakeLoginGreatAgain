@@ -7,6 +7,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.mmga.makelogingreatagain.MakeLoginGreatAgainMain;
+import org.mmga.makelogingreatagain.constants.ChatColorConstants;
 import org.mmga.makelogingreatagain.utils.PluginUtils;
 
 import java.net.InetSocketAddress;
@@ -60,7 +61,7 @@ public class InventoryClick implements Listener {
                         isPlayerRegister.put(player,true);
                         isPlayerUpper.put(player,false);
                         updateUserData(name,uuid,player.getAddress().getHostName());
-                        player.sendMessage(rightPassword);
+                        player.sendMessage(ChatColorConstants.tipsColor + rightPassword);
                         // 免责声明提示
                         player.performCommand("tellraw @s {\"text\": \"继续游玩则表明您同意我们的《免责声明》，如不同意，请退出服务器（点击此消息即可查看）\",\"color\": \"green\",\"clickEvent\": {\"action\": \"open_url\", \"value\": \"https://docs.qq.com/doc/DWEVMQmxRTHh2akRU\"}}");
                         if (BungeeCordMessageListener.NEED_LOGIN.containsKey(uniqueId)){
@@ -99,12 +100,12 @@ public class InventoryClick implements Listener {
                         if (BungeeCordMessageListener.NEED_LOGIN.containsKey(uniqueId)){
                             BungeeCordMessageListener.NEED_LOGIN.put(uniqueId,false);
                         }
-                        player.sendMessage(successfulRegister);
+                        player.sendMessage(ChatColorConstants.tipsColor + successfulRegister);
                     }else{
                         playerInputPassword.put(player,"");
                         playerInputPasswordRe.put(player,"");
                         playerInputIndexAt.put(player,0);
-                        player.sendMessage(twoPasswordNotEquals);
+                        player.sendMessage(ChatColorConstants.letterColor + twoPasswordNotEquals);
                         player.openInventory(getRegisterInventory(plugin));
                     }
                 }
