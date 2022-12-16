@@ -7,7 +7,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.mmga.makelogingreatagain.MakeLoginGreatAgainMain;
-import org.mmga.makelogingreatagain.constants.ItemStackConstants;
 import org.mmga.makelogingreatagain.utils.PluginUtils;
 
 import java.net.InetSocketAddress;
@@ -17,13 +16,13 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.mmga.makelogingreatagain.constants.StringConstants.*;
-import static org.mmga.makelogingreatagain.utils.InventoryUtils.*;
 import static org.mmga.makelogingreatagain.utils.DataBaseUtils.*;
+import static org.mmga.makelogingreatagain.utils.InventoryUtils.*;
 
 /**
  * @author wzp
  * @version 1.0.0
- * @date 2022/4/24
+ * @data 2022/4/24
  */
 public class InventoryClick implements Listener {
     public static ConcurrentHashMap<Player,Integer> playerInputIndexAt = new ConcurrentHashMap<>();
@@ -62,6 +61,8 @@ public class InventoryClick implements Listener {
                         isPlayerUpper.put(player,false);
                         updateUserData(name,uuid,player.getAddress().getHostName());
                         player.sendMessage(rightPassword);
+                        // 免责声明提示
+                        player.performCommand("tellraw @s {\"text\": \"继续游玩则表明您同意我们的《免责声明》，如不同意，请退出服务器（点击此消息即可查看）\",\"color\": \"green\",\"clickEvent\": {\"action\": \"open_url\", \"value\": \"https://docs.qq.com/doc/DWEVMQmxRTHh2akRU\"}}");
                         if (BungeeCordMessageListener.NEED_LOGIN.containsKey(uniqueId)){
                             BungeeCordMessageListener.NEED_LOGIN.put(uniqueId,false);
                         }

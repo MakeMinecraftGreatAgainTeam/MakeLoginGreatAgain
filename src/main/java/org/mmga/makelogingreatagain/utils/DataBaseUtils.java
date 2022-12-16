@@ -1,7 +1,6 @@
 package org.mmga.makelogingreatagain.utils;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import org.mmga.makelogingreatagain.MakeLoginGreatAgainMain;
 
 import java.sql.*;
